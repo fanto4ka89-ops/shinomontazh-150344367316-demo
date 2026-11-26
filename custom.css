@@ -1,0 +1,50 @@
+/* Отзывы увеличиваются при наведении */
+.s-reviews { overflow: visible; }
+.s-reviews li {
+  transition: transform .25s ease, box-shadow .25s ease;
+  will-change: transform;
+}
+.s-reviews li:hover {
+  transform: scale(1.04) translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+  z-index: 2;
+}
+
+/* Фото увеличиваются по клику */
+.s-photos figure { cursor: pointer; }
+.s-photos img { transition: transform .2s ease; }
+.s-photos figure:hover img { transform: scale(1.02); }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: zoom-out;
+  padding: 20px;
+}
+.lightbox.active { display: flex; }
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: var(--r, 12px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+}
+
+/* Переливающаяся основная кнопка */
+.s-btn:not(.s-btn--ghost) {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(120deg, var(--c-accent) 0%, #ffd8b8 50%, var(--c-accent) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.2s linear infinite;
+  color: var(--c-accent-ink);
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
